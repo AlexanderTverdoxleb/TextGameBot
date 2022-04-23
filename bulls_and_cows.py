@@ -1,5 +1,7 @@
+from settings import DB
 import random
 class BullsAndCowsGame:
+    description = "ghfdbkf222"
     def __init__(self):
         self.number = None
         self.attempt = 6
@@ -12,13 +14,15 @@ class BullsAndCowsGame:
 
     def give_answer(self,answer):
         if self.number is None:
-            return "Игра не инициализирована"
+            return "Игра не инициализирована", True
+        if len(answer) != self.len_number:
+            return "Введите 4-х значное число", False
+        if "".join(self.number) == answer:
+            return "Вы выиграли", True
         self.move += 1
         if self.move >= self.attempt:
             right_answer = "".join(self.number)
-            return f"Игра окончена. Загаданное число {right_answer}"
-        if len(answer) != self.len_number:
-            return "Введите 4-х значное число"
+            return f"Игра окончена. Загаданное число {right_answer}", True
         cows = 0
         bulls = 0
         for i, elem in enumerate(self.number):
@@ -26,12 +30,4 @@ class BullsAndCowsGame:
                 bulls += 1
             elif answer[i] in self.number:
                 cows += 1
-        if bulls == self.len_number:
-            return "Вы выиграли"
-        return f"Количество коров: {cows}; Количество быков: {bulls}"
-if __name__ == '__main__':
-    game = BullsAndCowsGame()
-    game.start()
-    for i in range(10):
-        answer = input()
-        print(game.give_answer(answer))
+        return f"Количество коров: {cows}; Количество быков: {bulls}", False

@@ -1,14 +1,10 @@
-from text_game_bot import TextGameBotClient
-from settings import TOKEN
-from discord.ext import commands
 import discord
-from bot_commands import BotCommands
+from discord.ext import commands
+from settings import TOKEN, COMMAND_PREFIX
+from text_game_bot import TextGameBot
 
 if __name__ == '__main__':
-    # client = TextGameBotClient()
-    # client.run(TOKEN)
-    intents = discord.Intents.default()
-    intents.members = True
-    bot = commands.Bot(command_prefix='!', intents=intents)
-    bot.add_cog(BotCommands(bot))
+    intents = discord.Intents.all()
+    bot = commands.Bot(command_prefix=COMMAND_PREFIX,intents=intents)
+    bot.add_cog(TextGameBot(bot))
     bot.run(TOKEN)
