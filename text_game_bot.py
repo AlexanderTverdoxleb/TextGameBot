@@ -70,7 +70,7 @@ class TextGameBot(commands.Cog):
     @commands.command(name='music')
     async def search_track(self, ctx, track_name=""):
         if track_name == "":
-            await ctx.send("Для поиска трека надо ввести комануд(!music "'исполнитель'"-"'название трека'")")
+            await ctx.send("Для поиска трека надо ввести комануд(!music "'исполнитель'"-"'название_трека'")")
         else:
             api_object = SpotifyApi()
             try:
