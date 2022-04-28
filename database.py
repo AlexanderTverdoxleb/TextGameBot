@@ -7,6 +7,9 @@ class GameStat:
         self.count_loses = count_loses
         self.count_draws = count_draws
 
+    def __str__(self):
+        return f"{self.count_wins}/{self.count_loses}/{self.count_draws}"
+
 
 class DataBase:
     def __init__(self):
